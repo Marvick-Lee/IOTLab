@@ -71,12 +71,12 @@ while True:
     #         client.publish("sensor3", light)
     #         sensor_type = 0
     
-    counterAI = counterAI - 1
-    if counterAI <= 0:
-        counterAI = 5
-        aiResult = img_detector()
-        client.publish("AI", aiResult)    
-        print("AI_Output: ", aiResult)
+    # counterAI = counterAI - 1
+    # if counterAI <= 0:
+    #     counterAI = 5
+    #     aiResult = img_detector()
+    #     client.publish("AI", aiResult)    
+    #     print("AI_Output: ", aiResult)
 
     readSerial(client)    
 
