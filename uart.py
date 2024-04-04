@@ -1,5 +1,7 @@
 
 import serial.tools.list_ports
+import sys
+import time
 
 def getPort():
     ports = serial.tools.list_ports.comports()
@@ -7,19 +9,22 @@ def getPort():
     commPort = "None"
     for i in range(0, N):
         port = ports[i]
+        # print(port, "\n")
         strPort = str(port)
         if "USB Serial Device" in strPort:
             splitPort = strPort.split(" ")
             commPort = (splitPort[0])
-    commPort = "/dev/pts/4"
-    return commPort
-    #return "COM3"
+    print (commPort)
+    # return commPort
+    # return "COM3"
+    return "/dev/pts/3"
+    # pass
     
 
-if getPort() != "None" :
-    ser = serial.Serial( port=getPort(), baudrate=115200)   
-    #ser = serial.Serial( "/dev/pts/1", baudrate=115200)   
-    print(ser)
+# if getPort() != "None" :
+ser = serial.Serial( port = getPort(), baudrate=115200)   
+#ser = serial.Serial( port = "/dev/pts/3", baudrate=9600)   
+print(ser)
 
 def processData(client, data):
     data = data.replace("!", "")
@@ -39,6 +44,7 @@ def readSerial(client):
     if (bytesToRead > 0):
         global mess
         mess = mess + ser.read(bytesToRead).decode("UTF-8")
+        print(mess)
         while ("#" in mess) and ("!" in mess):
             start = mess.find("!")
             end = mess.find("#")
