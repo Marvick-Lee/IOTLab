@@ -27,7 +27,7 @@ ser = serial.Serial( port = getPort(), baudrate=115200)
 print(ser)
 
 def processData(client, data):
-    data = data.replace("!", "")
+    data = data.replace("x", "")
     data = data.replace("#", "")
     splitData = data.split(":")
     print(splitData)
@@ -45,8 +45,8 @@ def readSerial(client):
         global mess
         mess = mess + ser.read(bytesToRead).decode("UTF-8")
         print(mess)
-        while ("#" in mess) and ("!" in mess):
-            start = mess.find("!")
+        while ("#" in mess) and ("x" in mess):
+            start = mess.find("x")
             end = mess.find("#")
             processData(client, mess[start:end + 1])
             if (end == len(mess)):

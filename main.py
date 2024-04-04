@@ -7,7 +7,7 @@ from uart import *
 
 AIO_FEED_IDs = ["button1", "button2"]
 AIO_USERNAME = "CE_LHuy"
-AIO_KEY = "aio_QLRJ53W6abqju20ix9DPbkvYeA3H"
+AIO_KEY = "aio_skno10JOHeg1pWNdJW0t385NRaKE"
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -46,7 +46,7 @@ counter = 10
 counterAI = 5
 sensor_type = 0
 aiResult = ""
-
+mess = ""
 while True:
     # counter = counter -1
     # if counter <= 0:
