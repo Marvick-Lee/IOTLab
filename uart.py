@@ -17,7 +17,7 @@ def getPort():
     print (commPort)
     # return commPort
     # return "COM3"
-    return "/dev/pts/3"
+    return "/dev/pts/6"
     # pass
     
 
