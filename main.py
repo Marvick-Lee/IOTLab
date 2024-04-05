@@ -2,12 +2,12 @@ import sys
 from Adafruit_IO import MQTTClient
 import time
 import random
-# from simpleAI import *
+from simpleAI import *
 from uart import *
 
-AIO_FEED_IDs = ["button1", "button2"]
+AIO_FEED_IDs = ["nutnhan1", "nutnhan2"]
 AIO_USERNAME = "CE_LHuy"
-AIO_KEY = "aio_Eeiw88LtawEzCNOIoWC9GEEhNNtJ"
+AIO_KEY = "aio_mNeU99EH0Wh0OhIKlgf7G9dfs9lT"
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -23,12 +23,12 @@ def disconnected(client):
 
 def message(client , feed_id , payload):
     print("Nhan du lieu: " + payload + " ,feed id:" + feed_id)
-    if feed_id == "button1":
+    if feed_id == "nutnhan1":
         if payload == "0":
             writeData("1")
         else:
             writeData("2")
-    if feed_id == "button2":
+    if feed_id == "nutnhan2":
         if payload == "0":
             writeData("3")
         else:
@@ -47,36 +47,37 @@ counterAI = 5
 sensor_type = 0
 aiResult = ""
 mess = ""
+
 while True:
-    # counter = counter -1
-    # if counter <= 0:
-    #     counter = 10
-    #     #TODO
-    #     print("Random data is publishing...")
-    #     if sensor_type == 0:
-    #         temp = random.randint(10,20)
-    #         print("Temperature...", temp)
-    #         client.publish("sensor1", temp)
-    #         sensor_type = 1
-    #     elif sensor_type == 1:
+    counter = counter -1
+    if counter <= 0:
+        counter = 10
+        #TODO
+        print("Random data is publishing...")
+        if sensor_type == 0:
+            temp = random.randint(10,20)
+            print("Temperature...", temp)
+            client.publish("sensor1", temp)
+            sensor_type = 1
+        elif sensor_type == 1:
 
-    #         humi = random.randint(50,70)
-    #         print("Humidity...", humi)
-    #         client.publish("sensor2", humi)
-    #         sensor_type = 2
-    #     elif sensor_type == 2:
+            humi = random.randint(50,70)
+            print("Humidity...", humi)
+            client.publish("sensor2", humi)
+            sensor_type = 2
+        elif sensor_type == 2:
 
-    #         light = random.randint(100, 500)
-    #         print("Light...", light)
-    #         client.publish("sensor3", light)
-    #         sensor_type = 0
+            light = random.randint(100, 500)
+            print("Light...", light)
+            client.publish("sensor3", light)
+            sensor_type = 0
     
-    # counterAI = counterAI - 1
-    # if counterAI <= 0:
-    #     counterAI = 5
-    #     aiResult = img_detector()
-    #     client.publish("AI", aiResult)    
-    #     print("AI_Output: ", aiResult)
+    counterAI = counterAI - 1
+    if counterAI <= 0:
+        counterAI = 5
+        aiResult = img_detector()
+        client.publish("AI", aiResult)    
+        print("AI_Output: ", aiResult)
 
     readSerial(client)    
 
